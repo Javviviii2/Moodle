@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moodle
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: moodle
+  template:
+    metadata:
+      labels:
+        app: moodle
+    spec:
+      containers:
+      - name: moodle
+        image: docker.io/bitnami/moodle:4.3
+        ports:
+        - containerPort: 8080
+        - containerPort: 8443
+        env:
+        - name: MOODLE_DATABASE_HOST
+          value: mariadb
+        - name: MOODLE_DATABASE_PORT_NUMBER
+          value: "3306"
+        - name: MARIADB_USER
+          value: admin-apsico
+        - name: MARIADB_DATABASE
+          value: apsico_moodle
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        volumeMounts:
+        - name: moodle-data
+          mountPath: /bitnami/moodle
+        - name: moodledata-data
+          mountPath: /bitnami/moodledata
+      volumes:
+      - name: moodle-data
+        persistentVolumeClaim:
+          claimName: moodle-data
+      - name: moodledata-data
+        persistentVolumeClaim:
+          claimName: moodledata-data
