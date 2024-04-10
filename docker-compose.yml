@@ -6,8 +6,8 @@ services:
       - '3306:9000'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes # only for development
-      - MARIADB_USER=bn_moodle
-      - MARIADB_DATABASE=bitnami_moodle
+      - MARIADB_USER=admin-apsico
+      - MARIADB_DATABASE=apsico_moodle
       - MARIADB_CHARACTER_SET=utf8mb4
       - MARIADB_COLLATE=utf8mb4_unicode_ci
     volumes:
@@ -20,8 +20,8 @@ services:
     environment:
       - MOODLE_DATABASE_HOST=mariadb
       - MOODLE_DATABASE_PORT_NUMBER=3306
-      - MOODLE_DATABASE_USER=bn_moodle
-      - MOODLE_DATABASE_NAME=bitnami_moodle
+      - MARIADB_USER=admin-apsico
+      - MARIADB_DATABASE=apsico_moodle
       - ALLOW_EMPTY_PASSWORD=yes # only for development
     volumes:
       - 'moodle_data:/bitnami/moodle'
