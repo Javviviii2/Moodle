@@ -31,8 +31,6 @@ spec:
         ports:
         - containerPort: 3306
         env:
-        - name: ALLOW_EMPTY_PASSWORD
-          value: "yes"
         - name: MARIADB_USER
           value: admin_apsico
         - name: MARIADB_DATABASE
@@ -41,6 +39,8 @@ spec:
           value: utf8mb4
         - name: MARIADB_COLLATE
           value: utf8mb4_unicode_ci
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
         volumeMounts:
         - name: mariadb-data
           mountPath: /bitnami/mariadb

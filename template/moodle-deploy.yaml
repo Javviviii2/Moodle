@@ -8,7 +8,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 8080
       nodePort: 30000
   type: LoadBalancer
 ---
@@ -31,19 +31,27 @@ spec:
       - name: moodle
         image: docker.io/bitnami/moodle:4.3
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+          hostPort: 80
+          protocol: TCP
         - containerPort: 443
         env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        - name: MOODLE_DATABASE_USER
+          value: admin_apsico
         - name: MOODLE_DATABASE_HOST
           value: mariadb
         - name: MOODLE_DATABASE_PORT_NUMBER
           value: "3306"
+        - name: MOODLE_DATABASE_TYPE
+          value: mariadb
+        - name: MOODLE_DATABASE_NAME
+          value: apsico_moodle
         - name: MARIADB_USER
           value: admin_apsico
         - name: MARIADB_DATABASE
           value: apsico_moodle
-        - name: ALLOW_EMPTY_PASSWORD
-          value: "yes"
         volumeMounts:
         - name: moodle-data
           mountPath: /bitnami/moodle
