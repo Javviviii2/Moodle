@@ -1,0 +1,95 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb
+spec:
+  selector:
+    app: mariadb
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+--- 
+# MariaDB Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: docker.io/bitnami/mariadb:11.2
+        ports:
+        - containerPort: 3306
+        env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        - name: MARIADB_USER
+          value: admin_apsico
+        - name: MARIADB_DATABASE
+          value: apsico_moodle
+        - name: MARIADB_CHARACTER_SET
+          value: utf8mb4
+        - name: MARIADB_COLLATE
+          value: utf8mb4_unicode_ci
+        volumeMounts:
+        - name: mariadb-data
+          mountPath: /bitnami/mariadb
+      volumes:
+      - name: mariadb-data
+        persistentVolumeClaim:
+          claimName: mariadb-data
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin
+spec:
+  selector:
+    app: phpmyadmin 
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30005
+  type: LoadBalancer
+---
+# phpMyAdmin
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+        - name: phpmyadmin
+          image: phpmyadmin/phpmyadmin
+          ports:
+            - containerPort: 80
+          env:
+            - name: PMA_HOST
+              value: mariadb
+            - name: PMA_USER
+              value: root
+            #- name: PMA_PASSWORD
+            #  value: "usuario"  
+            - name: PMA_PORT
+              value: "3306"

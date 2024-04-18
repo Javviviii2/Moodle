@@ -1,3 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: moodle
+spec:
+  selector:
+    app: moodle
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30000
+  type: LoadBalancer
+---
 # Moodle Deployment
 apiVersion: apps/v1
 kind: Deployment
@@ -25,7 +39,7 @@ spec:
         - name: MOODLE_DATABASE_PORT_NUMBER
           value: "3306"
         - name: MARIADB_USER
-          value: admin-apsico
+          value: admin_apsico
         - name: MARIADB_DATABASE
           value: apsico_moodle
         - name: ALLOW_EMPTY_PASSWORD
@@ -42,42 +56,3 @@ spec:
       - name: moodledata-data
         persistentVolumeClaim:
           claimName: moodledata-data
---- 
-# MariaDB Deployment
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mariadb
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mariadb
-  template:
-    metadata:
-      labels:
-        app: mariadb
-    spec:
-      containers:
-      - name: mariadb
-        image: docker.io/bitnami/mariadb:11.2
-        ports:
-        - containerPort: 3306
-        env:
-        - name: ALLOW_EMPTY_PASSWORD
-          value: "yes"
-        - name: MARIADB_USER
-          value: admin-apsico
-        - name: MARIADB_DATABASE
-          value: apsico_moodle
-        - name: MARIADB_CHARACTER_SET
-          value: utf8mb4
-        - name: MARIADB_COLLATE
-          value: utf8mb4_unicode_ci
-        volumeMounts:
-        - name: mariadb-data
-          mountPath: /bitnami/mariadb
-      volumes:
-      - name: mariadb-data
-        persistentVolumeClaim:
-          claimName: mariadb-data
