@@ -8,8 +8,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
-      nodePort: 30000
+      targetPort: 80
   type: LoadBalancer
 ---
 # Moodle Deployment
@@ -31,9 +30,7 @@ spec:
       - name: moodle
         image: docker.io/bitnami/moodle:4.3
         ports:
-        - containerPort: 8080
-          hostPort: 80
-          protocol: TCP
+        - containerPort: 80
         - containerPort: 443
         env:
         - name: ALLOW_EMPTY_PASSWORD
