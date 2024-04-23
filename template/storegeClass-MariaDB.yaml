@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: mariadb-storage-class 
+provisioner: kubernetes.io/gce-pd # Proveedor de almacenamiento 
+parameters:
+  type: pd-standard # Tipo de disco
+  fstype: ext4      # Sistema de archivos
+reclaimPolicy: Delete # Política de recuperación
+allowVolumeExpansion: true # Permitir expansión de volumen
