@@ -8,3 +8,11 @@ School: CPIFP Alan Turin
 ## Moodle Imagen from Bitnami
 **Oficial Documentation**: [bitnami-lms-powered-by-moodle-lms](https://github.com/bitnami/containers/tree/main/bitnami/moodle#bitnami-lms-powered-by-moodle-lms)
 
+# Cluster
+Create the cluster:
+    gcloud container clusters create-auto moodle --location=europe-southwest1
+Deployment apps:
+    kubectl apply -f .\template\
+
+# Public Moodle IP:
+    http://34.175.72.35

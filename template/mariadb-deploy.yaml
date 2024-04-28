@@ -25,11 +25,29 @@ spec:
       labels:
         app: mariadb
     spec:
+      initContainers:
+      - name: volume-permissions
+        image: busybox
+        command: ['sh', '-c', 'chown -R 1001:1001 /bitnami/mariadb']
+        volumeMounts:
+        - mountPath: /bitnami/mariadb
+          name: mariadb-data
       containers:
       - name: mariadb
         image: docker.io/bitnami/mariadb:11.2
+        securityContext:
+          runAsUser: 1001
         ports:
         - containerPort: 3306
+        #resources:
+          #limits:
+          #  cpu: 500m
+          #  ephemeral-storage: 1Gi
+          #  memory: 2Gi
+          #requests:
+          #  cpu: 500m
+          #  ephemeral-storage: 1Gi
+          #  memory: 2Gi
         env:
         - name: MARIADB_USER
           value: admin_apsico
