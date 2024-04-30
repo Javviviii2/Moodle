@@ -34,7 +34,7 @@ spec:
           name: mariadb-data
       containers:
       - name: mariadb
-        image: docker.io/bitnami/mariadb:11.2
+        image: docker.io/bitnami/mariadb:11.3
         securityContext:
           runAsUser: 1001
         ports:
@@ -49,16 +49,29 @@ spec:
           #  ephemeral-storage: 1Gi
           #  memory: 2Gi
         env:
-        - name: MARIADB_USER
-          value: admin_apsico
+        #--------------------------#
+        - name: MARIADB_USER # Must be the same as MOODLE_DATABASE_USER
+          value: apsico_user_mariadb
+        - name: MARIADB_PASSWORD # Must be the same as MOODLE_DATABASE_PASSWORD
+          value: "2222" # Test. Pasar a secret
+        #--------------------------#
+        - name: MARIADB_ROOT_USER
+          value: admin_apsico_db_root
+        - name: MARIADB_ROOT_PASSWORD
+          value: "1234" # Test. Pasar a secret
+        #--------------------------#
+        - name: MARIADB_SKIP_TEST_DB
+          value: "yes"
+        - name: MARIADB_ENABLE_SLOW_QUERY
+          value: "1"
+        - name: MARIADB_LONG_QUERY_TIME
+          value: "2"
         - name: MARIADB_DATABASE
           value: apsico_moodle
         - name: MARIADB_CHARACTER_SET
           value: utf8mb4
         - name: MARIADB_COLLATE
           value: utf8mb4_unicode_ci
-        - name: ALLOW_EMPTY_PASSWORD
-          value: "yes"
         volumeMounts:
         - name: mariadb-data
           mountPath: /bitnami/mariadb

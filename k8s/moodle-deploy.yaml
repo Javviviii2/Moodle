@@ -33,22 +33,26 @@ spec:
         - containerPort: 80
         - containerPort: 443
         env:
-        - name: ALLOW_EMPTY_PASSWORD
-          value: "yes"
-        - name: MOODLE_DATABASE_USER
-          value: admin_apsico
+        #--------------------------------------------------#  
+        - name: MOODLE_DATABASE_USER # Must be the same as MARIADB_USER
+          value: apsico_user_mariadb
+        - name: MOODLE_DATABASE_PASSWORD # Must be the same as MARIADB_PASSWORD
+          value: "2222" # Test. Pasar a secret
+        #--------------------------------------------------#
         - name: MOODLE_DATABASE_HOST
           value: mariadb
-        - name: MOODLE_DATABASE_PORT_NUMBER
-          value: "3306"
         - name: MOODLE_DATABASE_TYPE
           value: mariadb
         - name: MOODLE_DATABASE_NAME
           value: apsico_moodle
-        - name: MARIADB_USER
-          value: admin_apsico
-        - name: MARIADB_DATABASE
-          value: apsico_moodle
+        #----------- Moodle admin credentials --------------#
+        - name: MOODLE_USERNAME # Test. Pasar a secret
+          value: admin_apsico_moodle # Test. Pasar a secret
+        - name: MOODLE_PASSWORD # Test. Pasar a secret
+          value: "1111" # Test. Pasar a secret
+        #--------------------------------------------------#
+        - name: EXTRA_LOCALES
+          value: es_ES.UTF-8 UTF-8
         volumeMounts:
         - name: moodle-data
           mountPath: /bitnami/moodle

@@ -7,8 +7,8 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
-  storageClassName: moodle-storage-class
+      storage: 5Gi
+  #storageClassName: moodle-storage-class
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -19,8 +19,8 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
-  storageClassName: moodle-storage-class
+      storage: 5Gi
+  #storageClassName: moodle-storage-class
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -31,5 +31,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
-  storageClassName: mariadb-storage-class
+      storage: 5Gi
+  #storageClassName: mariadb-storage-class

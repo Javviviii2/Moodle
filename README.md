@@ -8,7 +8,10 @@ School: CPIFP Alan Turin
 ## Moodle Imagen from Bitnami
 **Oficial Documentation**: [bitnami-lms-powered-by-moodle-lms](https://github.com/bitnami/containers/tree/main/bitnami/moodle#bitnami-lms-powered-by-moodle-lms)
 
-# Cluster
+## MariaDB Imagen from Bitnami
+** Offical Documentation**: [MariaDB by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/mariadb)
+
+# Google Cloud Cluster
 Create the cluster:
     gcloud container clusters create-auto moodle --location=europe-southwest1
 Deployment apps:
