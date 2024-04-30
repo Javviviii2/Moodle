@@ -39,15 +39,15 @@ spec:
           runAsUser: 1001
         ports:
         - containerPort: 3306
-        #resources:
-          #limits:
-          #  cpu: 500m
-          #  ephemeral-storage: 1Gi
-          #  memory: 2Gi
-          #requests:
-          #  cpu: 500m
-          #  ephemeral-storage: 1Gi
-          #  memory: 2Gi
+        resources:
+          limits:
+            cpu: 500m
+            ephemeral-storage: 1Gi
+            memory: 2Gi
+          requests:
+            cpu: 500m
+            ephemeral-storage: 1Gi
+            memory: 2Gi
         env:
         #--------------------------#
         - name: MARIADB_USER # Must be the same as MOODLE_DATABASE_USER

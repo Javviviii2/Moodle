@@ -32,6 +32,15 @@ spec:
         ports:
         - containerPort: 80
         - containerPort: 443
+        resources:
+          limits:
+            cpu: 500m
+            ephemeral-storage: 1Gi
+            memory: 2Gi
+          requests:
+            cpu: 500m
+            ephemeral-storage: 1Gi
+            memory: 2Gi
         env:
         #--------------------------------------------------#  
         - name: MOODLE_DATABASE_USER # Must be the same as MARIADB_USER
