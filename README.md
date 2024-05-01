@@ -37,8 +37,8 @@ These environment variables are set using Kubernetes secrets (`moodle-secret`).
 - `MARIADB_PASSWORD`: Password for the MariaDB database user to create during the first initialization. 
 - `MARIADB_DATABASE`: MariaDB database to create during the first initialization.
 - `MARIADB_SKIP_TEST_DB`: Whether to skip creating the test database.
-- `MARIADB_ENABLE_SLOW_QUERY`: Whether to enable slow query logs. 
-- `MARIADB_LONG_QUERY_TIME`: How much time, in seconds, defines a slow query. "1" to set.
+- `MARIADB_ENABLE_SLOW_QUERY`: Whether to enable slow query logs.  "1" to set.
+- `MARIADB_LONG_QUERY_TIME`: How much time, in seconds, defines a slow query.
 
 These environment variables are set using Kubernetes secrets (`mariadb-secret`).
 
