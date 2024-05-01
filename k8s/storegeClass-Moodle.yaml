@@ -1,7 +1,8 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: moodle-storage-class 
+  name: moodle-storage-class
+  namespace: moodle 
 provisioner: kubernetes.io/gce-pd 
 parameters:
   type: pd-standard

@@ -1,7 +1,8 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: mariadb-storage-class 
+  name: mariadb-storage-class
+  namespace: moodle
 provisioner: kubernetes.io/gce-pd # Proveedor de almacenamiento 
 parameters:
   type: pd-standard # Tipo de disco

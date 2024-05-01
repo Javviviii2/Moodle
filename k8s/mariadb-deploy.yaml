@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mariadb
+  namespace: moodle
 spec:
   selector:
     app: mariadb
@@ -15,6 +16,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mariadb
+  namespace: moodle
 spec:
   replicas: 1
   selector:
@@ -51,14 +53,26 @@ spec:
         env:
         #--------------------------#
         - name: MARIADB_USER # Must be the same as MOODLE_DATABASE_USER
-          value: apsico_user_mariadb
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-secret
+              key: MARIADB_USER
         - name: MARIADB_PASSWORD # Must be the same as MOODLE_DATABASE_PASSWORD
-          value: "2222" # Test. Pasar a secret
+          valueFrom: 
+            secretKeyRef:
+              name: mariadb-secret
+              key: MARIADB_PASSWORD
         #--------------------------#
         - name: MARIADB_ROOT_USER
-          value: admin_apsico_db_root
+          valueFrom: 
+            secretKeyRef:
+              name: mariadb-secret
+              key: MARIADB_ROOT_USER 
         - name: MARIADB_ROOT_PASSWORD
-          value: "1234" # Test. Pasar a secret
+          valueFrom: 
+            secretKeyRef:
+              name: mariadb-secret
+              key: MARIADB_ROOT_PASSWORD
         #--------------------------#
         - name: MARIADB_SKIP_TEST_DB
           value: "yes"
@@ -67,7 +81,10 @@ spec:
         - name: MARIADB_LONG_QUERY_TIME
           value: "2"
         - name: MARIADB_DATABASE
-          value: apsico_moodle
+          valueFrom: 
+            secretKeyRef:
+              name: mariadb-secret
+              key: MARIA_DATABASE_NAME
         - name: MARIADB_CHARACTER_SET
           value: utf8mb4
         - name: MARIADB_COLLATE

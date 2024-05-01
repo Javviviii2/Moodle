@@ -18,4 +18,4 @@ Deployment apps:
     kubectl apply -f .\template\
 
 # Public Moodle IP:
-    http://34.175.72.35
+    http://34.175.137.8
