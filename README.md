@@ -8,12 +8,12 @@ School: CPIFP Alan Turin
 ## Moodle Imagen from Bitnami
 **Oficial Documentation**: [Moodle by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/moodle#bitnami-lms-powered-by-moodle-lms)
 Packages installed by Bitnami Dockerfile:
-    - "php-8.1.28-4-linux-${OS_ARCH}-debian-12"
-    - "apache-2.4.59-0-linux-${OS_ARCH}-debian-12"
-    - "postgresql-client-13.14.0-2-linux-${OS_ARCH}-debian-12"
-    - "mysql-client-11.3.2-2-linux-${OS_ARCH}-debian-12"
-    - "libphp-8.1.28-0-linux-${OS_ARCH}-debian-12"
-    - "moodle-4.4.0-0-linux-${OS_ARCH}-debian-12"
+- "php-8.1.28-4-linux-${OS_ARCH}-debian-12"
+- "apache-2.4.59-0-linux-${OS_ARCH}-debian-12"
+- "postgresql-client-13.14.0-2-linux-${OS_ARCH}-debian-12"
+- "mysql-client-11.3.2-2-linux-${OS_ARCH}-debian-12"
+- "libphp-8.1.28-0-linux-${OS_ARCH}-debian-12"
+- "moodle-4.4.0-0-linux-${OS_ARCH}-debian-12"
 
 ### Moodle Environment Variables
 - `MOODLE_DATABASE_USER`: Database user name. Must be the same as `MARIADB_USER`.
