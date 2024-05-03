@@ -7,6 +7,7 @@ School: CPIFP Alan Turin
 
 ## Moodle Imagen from Bitnami
 **Oficial Documentation**: [Moodle by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/moodle#bitnami-lms-powered-by-moodle-lms)
+
 Packages installed by Bitnami Dockerfile:
 - "php-8.1.28-4-linux-${OS_ARCH}-debian-12"
 - "apache-2.4.59-0-linux-${OS_ARCH}-debian-12"
