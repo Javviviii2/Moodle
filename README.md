@@ -6,7 +6,6 @@ School: CPIFP Alan Turin
 [Moodle binnacle](https://docs.google.com/document/d/1KNaS97n7dDzfjWdDSxk-xkjukFkCoAAS8Q0o4S3_wx4/edit?usp=sharing)
 
 ## Moodle Imagen from Bitnami
-**Oficial Documentation**: [Moodle by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/moodle#bitnami-lms-powered-by-moodle-lms)
 
 Packages installed by Bitnami Dockerfile:
 - "php-8.1.28-4-linux-${OS_ARCH}-debian-12"
@@ -29,7 +28,6 @@ Packages installed by Bitnami Dockerfile:
 These environment variables are set using Kubernetes secrets (`moodle-secret`).
 
 ## MariaDB Imagen from Bitnami
-**Offical Documentation**: [MariaDB by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/mariadb)
 
 ### MariaDB Environment Variables
 - `MARIADB_ROOT_USER`: MariaDB database root user.
@@ -50,3 +48,15 @@ gcloud container clusters create-auto moodle --location=europe-southwest1
 ```
 # Public Moodle IP:
     http://34.175.137.8
+# Bibliography
+* Moodle:
+    - [Moodle by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/moodle#bitnami-lms-powered-by-moodle-lms)
+    - [Oficial Moodle Code](https://github.com/moodle/moodle)
+    - [Moodle Instalation Information](https://docs.moodle.org/403/en/Installing_Moodle)
+* MariaDB
+    - [MariaDB by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/mariadb)
+* Kubernetes and Helm:
+    - [Oficial Kubernetes Documentation](https://kubernetes.io/es/docs/home/)
+    - [Oficial Helm Documentation](https://helm.sh/docs/intro/quickstart/)
+    - [Basic Kubernetes Concepts](https://www.youtube.com/watch?v=X48VuDVv0do)
+    - Freepik Company
