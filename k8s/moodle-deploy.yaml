@@ -19,7 +19,12 @@ metadata:
   name: moodle
   namespace: moodle
 spec:
-  replicas: 2
+  replicas: 1
+  #strategy:
+  #  type: RollingUpdate
+  #  rollingUpdate:
+  #    maxUnavailable: 0
+  #    maxSurge: 0
   selector:
     matchLabels:
       app: moodle
