@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.moodle.metadata.name }}
+  namespace: {{ .Values.moodle.metadata.namespace }}
+spec:
+  replicas: {{ .Values.moodle.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.moodle.deployment.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.moodle.deployment.app }}
+    spec:
+      containers:
+      - name: {{ .Values.moodle.deployment.con }}
+        image: {{ .Values.moodle.deployment.image }}
+        ports:
+        - containerPort: {{ .Values.moodle.deployment.ports.containerPort1 }}
+        - containerPort: {{ .Values.moodle.deployment.ports.containerPort2 }}
+        resources:
+          limits:
+            cpu: {{ .Values.moodle.deployment.resources.limits.cpu }}
+            ephemeral-storage: {{ .Values.moodle.deployment.resources.limits.ephemeral-storage }}
+            memory: {{ .Values.moodle.deployment.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.moodle.deployment.resources.requests.cpu }}
+            ephemeral-storage: {{ .Values.moodle.deployment.resources.requests.ephemeral-storage }}
+            memory: {{ .Values.moodle.deployment.resources.requests.memory }}
+        env:
+        - name: {{ .Values.moodle.deployment.env[0].name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.moodle.deployment.env[0].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.moodle.deployment.env[0].valueFrom.secretKeyRef.key }} 
+        - name: {{ .Values.moodle.deployment.env[1].name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.moodle.deployment.env[1].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.moodle.deployment.env[1].valueFrom.secretKeyRef.key }}
+        - name: {{ .Values.moodle.deployment.env[2].name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.moodle.deployment.env[2].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.moodle.deployment.env[2].valueFrom.secretKeyRef.key }}
+        - name: {{ .Values.moodle.deployment.env[3].name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.moodle.deployment.env[3].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.moodle.deployment.env[3].valueFrom.secretKeyRef.key }}
+        - name: {{ .Values.moodle.deployment.env[4].name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.moodle.deployment.env[4].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.moodle.deployment.env[4].valueFrom.secretKeyRef.key }}
+        - name: {{ .Values.moodle.deployment.env[5].name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.moodle.deployment.env[5].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.moodle.deployment.env[5].valueFrom.secretKeyRef.key }}
+        - name: {{ .Values.moodle.deployment.env[6].name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.moodle.deployment.env[6].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.moodle.deployment.env[6].valueFrom.secretKeyRef.key }}
+        - name: {{ .Values.moodle.deployment.env[7].name }}
+          value: {{ .Values.moodle.deployment.env[7].value }}
+        volumeMounts:
+        - name: {{ .Values.moodle.deployment.volumeMounts[0].name }}
+          mountPath: {{ .Values.moodle.deployment.volumeMounts[0].mountPath }}
+        - name: {{ .Values.moodle.deployment.volumeMounts[1].name }}
+          mountPath: {{ .Values.moodle.deployment.volumeMounts[1].mountPath }}
+      volumes:
+      - name: {{ .Values.moodle.deployment.volumes[0].name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.moodle.deployment.volumes[0].persistentVolumeClaim.claimName }}
+      - name: {{ .Values.moodle.deployment.volumes[1].name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.moodle.deployment.volumes[1].persistentVolumeClaim.claimName }}

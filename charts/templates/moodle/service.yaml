@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.moodle.metadata.name }}
+  namespace: {{ .Values.moodle.metadata.namespace }}
+spec:
+  selector:
+    app: {{ .Values.moodle.deployment.app }}
+  ports:
+    - protocol: {{ .Values.moodle.service.ports.protocol }}
+      port: {{ .Values.moodle.service.ports.port }}
+      targetPort: {{ .Values.moodle.service.ports.targetPort }}
+  type: {{ .Values.moodle.service.type }}

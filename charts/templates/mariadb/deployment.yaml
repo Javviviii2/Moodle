@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.mariadb.metadata.name }}
+  namespace: {{ .Values.mariadb.metadata.namespace }}
+spec:
+  replicas: {{ .Values.mariadb.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: 
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.mariadb.deployment.app }}
+    spec:
+      initContainers:
+      - name: volume-permissions
+        image: busybox
+        command: ['sh', '-c', 'chown -R 1001:1001 /bitnami/mariadb']
+        volumeMounts:
+        - mountPath: {{ .Values.mariadb.volumeMounts.mountPath }}
+          name: {{ .Values.mariadb.volumeMounts.name }}
+      containers:
+      - name: {{ .Values.mariadb.app.name }}
+        image: {{ .Values.mariadb.app.image }}
+        securityContext:
+          runAsUser: 1001
+        ports:
+        - containerPort: {{ .Values.mariadb.ports.containerPort }}
+        resources:
+          limits:
+            cpu: {{ .Values.mariadb.resources.limits.cpu }}
+            ephemeral-storage: {{ .Values.mariadb.resources.limits.ephemeral-storage }}
+            memory: {{ .Values.mariadb.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.mariadb.resources.requests.cpu }}
+            ephemeral-storage: {{ .Values.mariadb.resources.requests.ephemeral-storage }}
+            memory: {{ .Values.mariadb.resources.requests.memory }}
+        env:
+        - name: {{ .Values.mariadb.env[0].name }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.mariadb.env[0].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.mariadb.env[0].valueFrom.secretKeyRef.key }}
+        - name: {{ .Values.mariadb.env[1].name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.mariadb.env[1].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.mariadb.env[1].valueFrom.secretKeyRef.key }}
+        - name: {{ .Values.mariadb.env[2].name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.mariadb.env[2].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.mariadb.env[2].valueFrom.secretKeyRef.key }}
+        - name: {{ .Values.mariadb.env[3].name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.mariadb.env[3].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.mariadb.env[3].valueFrom.secretKeyRef.key }}
+        - name: MARIADB_SKIP_TEST_DB
+          value: "yes"
+        - name: MARIADB_ENABLE_SLOW_QUERY
+          value: "1"
+        - name: MARIADB_LONG_QUERY_TIME
+          value: "2"
+        - name: {{ .Values.mariadb.env[4].name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.mariadb.env[4].valueFrom.secretKeyRef.name }}
+              key: {{ .Values.mariadb.env[4].valueFrom.secretKeyRef.key }}
+        - name: MARIADB_CHARACTER_SET
+          value: utf8mb4
+        - name: MARIADB_COLLATE
+          value: utf8mb4_unicode_ci
+        volumeMounts:
+        - name: {{ .Values.mariadb.volumeMounts.name }}
+          mountPath: {{ .Values.mariadb.volumeMounts.mountPath }}
+      volumes:
+      - name: {{ .Values.mariadb.volumeMounts.name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.mariadb.volumeMounts.persistentVolumeClaim.claimName }}

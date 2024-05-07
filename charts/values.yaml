@@ -1,0 +1,136 @@
+moodle:
+  metadata:
+    name: moodle
+    namespace: moodle
+  service:
+    type: LoadBalancer
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  deployment:
+    app: moodle
+    replicas: 2
+    containerName: moodle
+    image: docker.io/bitnami/moodle:4.3
+    containerPort1: 80
+    containerPort2: 443
+    resources:
+      limits:
+        cpu: 500m
+        ephemeral-storage: 1Gi
+        memory: 2Gi
+      requests:
+        cpu: 500m
+        ephemeral-storage: 1Gi
+        memory: 2Gi
+    env:
+      - name: MOODLE_DATABASE_USER
+        valueFrom:
+          secretKeyRef:
+            name: moodle-secret
+            key: MOODLE_DATABASE_USER
+      - name: MOODLE_DATABASE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: moodle-secret
+            key: MOODLE_DATABASE_PASSWORD
+      - name: MOODLE_DATABASE_HOST
+        valueFrom:
+          secretKeyRef:
+            name: moodle-secret
+            key: MOODLE_DATABASE_HOST
+      - name: MOODLE_DATABASE_TYPE
+        valueFrom:
+          secretKeyRef:
+            name: moodle-secret
+            key: MOODLE_DATABASE_TYPE
+      - name: MOODLE_DATABASE_NAME
+        valueFrom:
+          secretKeyRef:
+            name: moodle-secret
+            key: MOODLE_DATABASE_NAME
+      - name: MOODLE_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: moodle-secret
+            key: MOODLE_USERNAME
+      - name: MOODLE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: moodle-secret
+            key: MOODLE_PASSWORD
+      volumeMounts:
+        - name: moodle-data
+          mountPath: /bitnami/moodle
+        - name: moodledata-data
+          mountPath: /bitnami/moodledata
+    volumes:
+      - name: moodle-data
+        persistentVolumeClaim:
+          claimName: moodle-data
+      - name: moodledata-data
+        persistentVolumeClaim:
+          claimName: moodledata-data
+  pvc: 
+    moodle-data:
+      accessModes: ReadWriteOnce
+      storage: 5Gi
+      storageClassName: moodle-storage-class
+    moodledata-data:
+      accessModes: ReadWriteOnce
+      storage: 5Gi
+      storageClassName: moodle-storage-class
+mariadb:
+  metadata:
+    name: mariadb
+    namespace: moodle
+  service:
+    type: ClusterIP
+    port: 3306
+    targetPort: 3306
+  deployment:
+    app: mariadb
+    replicas: 2
+    image: docker.io/bitnami/mariadb:10.5
+    containerPort: 3306
+    resources:
+      limits:
+        cpu: 500m
+        ephemeral-storage: 1Gi
+        memory: 2Gi
+      requests:
+        cpu: 500m
+        ephemeral-storage: 1Gi
+        memory: 2Gi
+    env:
+      - name: MARIADB_ROOT_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: mariadb-secret
+            key: MARIADB_ROOT_PASSWORD
+      - name: MARIADB_USER
+        valueFrom:
+          secretKeyRef:
+            name: mariadb-secret
+            key: MARIADB_USER
+      - name: MARIADB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: mariadb-secret
+            key: MARIADB_PASSWORD
+      - name: MARIADB_DATABASE_NAME
+        valueFrom:
+          secretKeyRef:
+            name: mariadb-secret
+            key: MARIADB_DATABASE_NAME
+    volumeMounts:
+      - name: mariadb-data
+        mountPath: /bitnami/mariadb
+    volumes:
+      - name: mariadb-data
+        persistentVolumeClaim:
+          claimName: mariadb-data
+  pvc: 
+      accessModes: ReadWriteOnce
+      storage: 5Gi
+      storageClassName: mariadb-storage-class
