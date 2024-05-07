@@ -1,7 +1,8 @@
 # Moodle
 Curse: ASIR 2024
 School: CPIFP Alan Turin
-
+## CheckPoint
+[Video CheckPoint](https://youtu.be/ipq2waYJp-c)
 ## Diary
 [Moodle binnacle](https://docs.google.com/document/d/1KNaS97n7dDzfjWdDSxk-xkjukFkCoAAS8Q0o4S3_wx4/edit?usp=sharing)
 
