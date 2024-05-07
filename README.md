@@ -6,14 +6,14 @@ School: CPIFP Alan Turin
 [Moodle binnacle](https://docs.google.com/document/d/1KNaS97n7dDzfjWdDSxk-xkjukFkCoAAS8Q0o4S3_wx4/edit?usp=sharing)
 
 ## Moodle Imagen from Bitnami
-**Oficial Documentation**: [Moodle by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/moodle#bitnami-lms-powered-by-moodle-lms)
+
 Packages installed by Bitnami Dockerfile:
-    - "php-8.1.28-4-linux-${OS_ARCH}-debian-12"
-    - "apache-2.4.59-0-linux-${OS_ARCH}-debian-12"
-    - "postgresql-client-13.14.0-2-linux-${OS_ARCH}-debian-12"
-    - "mysql-client-11.3.2-2-linux-${OS_ARCH}-debian-12"
-    - "libphp-8.1.28-0-linux-${OS_ARCH}-debian-12"
-    - "moodle-4.4.0-0-linux-${OS_ARCH}-debian-12"
+- "php-8.1.28-4-linux-${OS_ARCH}-debian-12"
+- "apache-2.4.59-0-linux-${OS_ARCH}-debian-12"
+- "postgresql-client-13.14.0-2-linux-${OS_ARCH}-debian-12"
+- "mysql-client-11.3.2-2-linux-${OS_ARCH}-debian-12"
+- "libphp-8.1.28-0-linux-${OS_ARCH}-debian-12"
+- "moodle-4.4.0-0-linux-${OS_ARCH}-debian-12"
 
 ### Moodle Environment Variables
 - `MOODLE_DATABASE_USER`: Database user name. Must be the same as `MARIADB_USER`.
@@ -28,7 +28,6 @@ Packages installed by Bitnami Dockerfile:
 These environment variables are set using Kubernetes secrets (`moodle-secret`).
 
 ## MariaDB Imagen from Bitnami
-**Offical Documentation**: [MariaDB by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/mariadb)
 
 ### MariaDB Environment Variables
 - `MARIADB_ROOT_USER`: MariaDB database root user.
@@ -49,3 +48,17 @@ gcloud container clusters create-auto moodle --location=europe-southwest1
 ```
 # Public Moodle IP:
     http://34.175.137.8
+# Bibliography
+* Moodle:
+    - [Moodle by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/moodle#bitnami-lms-powered-by-moodle-lms)
+    - [Oficial Moodle Code](https://github.com/moodle/moodle)
+    - [Moodle Instalation Information](https://docs.moodle.org/403/en/Installing_Moodle)
+* MariaDB
+    - [MariaDB by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/mariadb)
+* Kubernetes and Helm:
+    - [Oficial Kubernetes Documentation](https://kubernetes.io/es/docs/home/)
+    - [Oficial Helm Documentation](https://helm.sh/docs/intro/quickstart/)
+    - [Basic Kubernetes Concepts](https://www.youtube.com/watch?v=X48VuDVv0do)
+    - Freepik Company
+* Google Cloud
+    - [Create Cluster](https://cloud.google.com/kubernetes-engine/docs/deploy-app-cluster?hl=es-419)
