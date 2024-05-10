@@ -49,6 +49,12 @@ gcloud container clusters create-auto moodle --location=europe-southwest1
 ```
 # Public Moodle IP:
     http://34.175.137.8
+# To-Do
+* DHCP on K8s
+* Apply Terraform
+* Create security plan
+* Check session persistence
+  
 # Bibliography
 * Moodle:
     - [Moodle by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/moodle#bitnami-lms-powered-by-moodle-lms)
