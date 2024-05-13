@@ -1,0 +1,79 @@
+namespace: 
+  name: moodle
+service:
+  name: moodle-svc
+  type: LoadBalancer
+  protocol: TCP
+  port: 80
+  targetPort: 8080
+app:
+  name: moodle
+secret:
+  name: moodle-secret
+deployment:
+  name: moodle-deployment
+  replicas: 1
+  image: docker.io/bitnami/moodle
+  tag: 4.3 
+  containerPort1: 80
+  containerPort2: 443
+  resources:
+    limits:
+      cpu: 1Gi
+      memory: 2Gi
+    requests:
+      cpu: 1Gi
+      memory: 2Gi
+  env:
+    env1:
+      name: MOODLE_DATABASE_USER
+      key: MOODLE_DATABASE_USER
+    env2:
+      name: MOODLE_DATABASE_PASSWORD
+      key: MOODLE_DATABASE_PASSWORD
+    env3:
+      name: MOODLE_DATABASE_HOST
+      key: MOODLE_DATABASE_HOST
+    env4:
+      name: MOODLE_DATABASE_TYPE
+      key: MOODLE_DATABASE_TYPE
+    env5:
+      name: MOODLE_DATABASE_NAME
+      key: MOODLE_DATABASE_NAME
+    env6:
+      name: MOODLE_USERNAME
+      key: MOODLE_USERNAME
+    env7: 
+      name: MOODLE_PASSWORD
+      key: MOODLE_PASSWORD
+  volumeMounts:
+    data: 
+      name: moodle-data
+      mountPath: /bitnami/moodle
+    files:
+      name: moodledata-file
+      mountPath: /bitnami/moodledatafile
+  volumes:
+    data:
+      name: moodle-data
+    files:
+      name: moodledata-file
+storageClass:
+  name: moodle-storage-class  
+pvc:
+  moodledata:
+    name: moodle-data-pvc 
+    accessModes: ReadWriteOnce
+    storage: 1Gi
+  moodledatafile:
+    name: moodledata-data-pvc
+    accessModes: ReadWriteOnce
+    storage: 1Gi
+storageClass:
+  name: moodle-storage-class
+  provisioner: kubernetes.io/gce-pd
+  parameters:
+    type: pd-standard
+    fstype: ext4
+  reclaimPolicy: Delete
+  allowVolumeExpansion: true

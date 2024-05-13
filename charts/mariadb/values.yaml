@@ -1,0 +1,57 @@
+namespace:
+  name: moodle
+service:
+  name: mariadb-svc
+  type: ClusterIP
+  port: 3306
+  targetPort: 3306
+secret:
+  name: mariadb-secret
+app:
+  name: mariadb
+deployment:
+  name: mariadb-deployment
+  replicas: 1
+  image: docker.io/bitnami/mariadb
+  tag: 10.5
+  containerPort: 3306
+  resources:
+    limits:
+      cpu: 1Gi
+      memory: 2Gi
+    requests:
+      cpu: 1Gi
+      memory: 2Gi
+  env:
+    env1:
+      name: MARIADB_ROOT_USER
+      key: MARIADB_ROOT_USER
+    env2:
+      name: MARIADB_ROOT_PASSWORD
+      key: MARIADB_ROOT_PASSWORD
+    env3:
+      name: MARIADB_USER
+      key: MARIADB_USER
+    env4:
+      name: MARIADB_PASSWORD
+      key: MARIADB_PASSWORD
+    env5:
+      name: MARIADB_DATABASE
+      key: MARIADB_DATABASE_NAME
+  volumeMounts:
+    name: mariadb-data
+    mountPath: /bitnami/mariadb
+  volumes:
+    name: mariadb-data
+pvc:
+  name: mariadb-pvc 
+  accessModes: ReadWriteOnce
+  storage: 1Gi
+storageClass: 
+  name: mariadb-storage-class
+  provisioner: kubernetes.io/gce-pd
+  parameters:
+    type: pd-standard
+    fstype: ext4
+  reclaimPolicy: Delete
+  allowVolumeExpansion: true

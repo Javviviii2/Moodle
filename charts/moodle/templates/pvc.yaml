@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.pvc.moodledata.name }}
+  namespace: {{ .Values.namespace.name }}
+spec:
+  accessModes:
+    - {{ .Values.pvc.moodledata.accessModes }}
+  resources:
+    requests:
+      storage: {{ .Values.pvc.moodledata.storage }}
+  storageClassName: {{ .Values.storageClass.name }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.pvc.moodledatafile.name }}
+  namespace: {{ .Values.namespace.name }}
+spec:
+  accessModes:
+    - {{ .Values.pvc.moodledatafile.accessModes }}
+  resources:
+    requests:
+      storage: {{ .Values.pvc.moodledatafile.storage }}
+  storageClassName: {{ .Values.storageClass.name }}

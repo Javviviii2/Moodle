@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  namespace: {{ .Values.namespace.name }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.app.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app.name }}
+    spec:
+      containers:
+      - name: {{ .Values.app.name }}
+        image: {{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
+        ports:
+        - containerPort: {{ .Values.deployment.containerPort1 }}
+        - containerPort: {{ .Values.deployment.containerPort2 }}
+        resources:
+          limits:
+            cpu: {{ .Values.deployment.resources.limits.cpu }}
+            memory: {{ .Values.deployment.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.deployment.resources.requests.cpu }}
+            memory: {{ .Values.deployment.resources.requests.memory }}
+        env:
+        - name: {{ .Values.deployment.env.env1.name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: {{ .Values.deployment.env.env1.key }} 
+        - name: {{ .Values.deployment.env.env2.name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: {{ .Values.deployment.env.env2.key }}
+        - name: {{ .Values.deployment.env.env3.name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: {{ .Values.deployment.env.env3.key }}
+        - name: {{ .Values.deployment.env.env4.name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: {{ .Values.deployment.env.env4.key }}
+        - name: {{ .Values.deployment.env.env5.name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: {{ .Values.deployment.env.env5.key }}
+        - name: {{ .Values.deployment.env.env6.name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: {{ .Values.deployment.env.env6.key }}
+        - name: {{ .Values.deployment.env.env7.name }}
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: {{ .Values.deployment.env.env7.key }}
+        volumeMounts:
+        - name: {{ .Values.deployment.volumeMounts.data.name }}
+          mountPath: {{ .Values.deployment.volumeMounts.data.mountPath }}
+        - name: {{ .Values.deployment.volumeMounts.files.name }}
+          mountPath: {{ .Values.deployment.volumeMounts.files.mountPath }}
+      volumes:
+      - name: {{ .Values.deployment.volumes.data.name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.pvc.moodledata.name }}
+      - name: {{ .Values.deployment.volumes.files.name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.pvc.moodledatafile.name }}

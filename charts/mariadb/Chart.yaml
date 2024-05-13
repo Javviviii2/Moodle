@@ -1,0 +1,4 @@
+apiVersion: v2
+name: mariadb-chart
+version: 1.0.0
+description: A basic chart for demonstration purposes
