@@ -48,7 +48,7 @@ Create the cluster:
 gcloud container clusters create-auto moodle --location=europe-southwest1
 ```
 # Public Moodle IP:
-    http://34.175.137.8
+    http://34.175.11.0
 # To-Do
 * DHCP on K8s
 * Apply Terraform
