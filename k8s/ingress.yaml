@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: moodle-ingress
+spec:
+  rules:
+  - host: "www.apsico.es"
+    http:
+      paths: 
+      - pathType: Prefix
+        path: "/moodle"
+        backend:
+          service:
+            name: moodle-svc
+            port:
+              number: 80
