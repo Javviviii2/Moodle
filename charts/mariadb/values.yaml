@@ -45,8 +45,13 @@ deployment:
     name: mariadb-data
 pvc:
   name: mariadb-pvc 
-  accessModes: ReadWriteOnce
+  accessModes: ReadWriteMany
   storage: 5Gi
+pv:
+  name: mariadb-pv
+  storage: 5Gi
+  accessModes: ReadWriteMany
+  path: /moodle/mariadb
 storageClass: 
   name: mariadb-storage-class
   provisioner: kubernetes.io/gce-pd

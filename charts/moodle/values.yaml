@@ -19,10 +19,10 @@ deployment:
   containerPort2: 443
   resources:
     limits:
-      cpu: 2000m
+      cpu: 500m
       memory: 2Gi
     requests:
-      cpu: 2000m
+      cpu: 500m
       memory: 2Gi
   env:
     env1:
@@ -69,6 +69,19 @@ pvc:
     name: moodledata-file-pvc
     accessModes: ReadWriteOnce
     storage: 5Gi
+pv:
+  moodledata:
+    name: moodle-data-pv
+    storage: 5Gi
+    accessModes: ReadWriteOnce
+    reclaimPolicy: Retain
+    path: /moodle/moodle/data
+  moodledatafile:
+    name: moodledata-file-pv
+    storage: 5Gi
+    accessModes: ReadWriteOnce
+    reclaimPolicy: Retain
+    path: /moodle/datafile
 storageClass:
   name: moodle-storage-class
   provisioner: kubernetes.io/gce-pd
