@@ -2,7 +2,7 @@ namespace:
   name: moodle
 service:
   name: moodle-svc
-  type: LoadBalancer
+  type: clusterIP # LoadBalancer for cloud providers
   protocol: TCP
   port: 80
   targetPort: 80
@@ -19,11 +19,11 @@ deployment:
   containerPort2: 443
   resources:
     limits:
-      cpu: 1000m
-      memory: 1Gi
+      cpu: 500m
+      memory: 2Gi
     requests:
-      cpu: 1000m
-      memory: 1Gi
+      cpu: 500m
+      memory: 2Gi
   volumeMounts:
     data: 
       name: moodle-data

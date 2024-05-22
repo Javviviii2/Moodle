@@ -41,11 +41,11 @@ spec:
         - containerPort: 443
         resources:
           limits:
-            cpu: 500m
-            memory: 2Gi
+            cpu: 2000m
+            memory: 4Gi
           requests:
             cpu: 500m
-            memory: 2Gi
+            memory: 1Gi
         livenessProbe:
           httpGet:
             path: /
