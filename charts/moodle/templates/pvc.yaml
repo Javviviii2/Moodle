@@ -10,7 +10,6 @@ spec:
     requests:
       storage: {{ .Values.pvc.moodledata.storage }}
   storageClassName: {{ .Values.storageClass.name }}
-  volumeName: {{ .Values.pv.moodledata.name }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -24,4 +23,3 @@ spec:
     requests:
       storage: {{ .Values.pvc.moodledatafile.storage }}
   storageClassName: {{ .Values.storageClass.name }}
-  volumeName: {{ .Values.pv.moodledatafile.name }}

@@ -9,6 +9,4 @@ spec:
   resources:
     requests:
       storage: {{ .Values.pvc.storage }}
-  volumeName: {{ .Values.pv.name }}
   storageClassName: {{ .Values.storageClass.name}}
-  volumeName: {{ .Values.pv.name }}

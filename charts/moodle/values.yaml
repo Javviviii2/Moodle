@@ -14,38 +14,16 @@ deployment:
   name: moodle-deployment
   replicas: 1
   image: docker.io/bitnami/moodle
-  tag: 4.3 
+  tag: 4.4 
   containerPort1: 80
   containerPort2: 443
   resources:
     limits:
-      cpu: 500m
-      memory: 2Gi
+      cpu: 1000m
+      memory: 1Gi
     requests:
-      cpu: 500m
-      memory: 2Gi
-  env:
-    env1:
-      name: MOODLE_DATABASE_USER
-      key: MOODLE_DATABASE_USER
-    env2:
-      name: MOODLE_DATABASE_PASSWORD
-      key: MOODLE_DATABASE_PASSWORD
-    env3:
-      name: MOODLE_DATABASE_HOST
-      key: MOODLE_DATABASE_HOST
-    env4:
-      name: MOODLE_DATABASE_TYPE
-      key: MOODLE_DATABASE_TYPE
-    env5:
-      name: MOODLE_DATABASE_NAME
-      key: MOODLE_DATABASE_NAME
-    env6:
-      name: MOODLE_USERNAME
-      key: MOODLE_USERNAME
-    env7: 
-      name: MOODLE_PASSWORD
-      key: MOODLE_PASSWORD
+      cpu: 1000m
+      memory: 1Gi
   volumeMounts:
     data: 
       name: moodle-data
@@ -58,35 +36,20 @@ deployment:
       name: moodle-data
     files:
       name: moodledata-file
-storageClass:
-  name: moodle-storage-class  
 pvc:
   moodledata:
     name: moodle-data-pvc 
     accessModes: ReadWriteOnce
-    storage: 5Gi
+    storage: 10Gi
   moodledatafile:
     name: moodledata-file-pvc
     accessModes: ReadWriteOnce
-    storage: 5Gi
-pv:
-  moodledata:
-    name: moodle-data-pv
-    storage: 5Gi
-    accessModes: ReadWriteOnce
-    reclaimPolicy: Retain
-    path: /moodle/moodle/data
-  moodledatafile:
-    name: moodledata-file-pv
-    storage: 5Gi
-    accessModes: ReadWriteOnce
-    reclaimPolicy: Retain
-    path: /moodle/datafile
+    storage: 10Gi
 storageClass:
   name: moodle-storage-class
   provisioner: kubernetes.io/gce-pd
   parameters:
     type: pd-standard
     fstype: ext4
-  reclaimPolicy: Delete
+  reclaimPolicy: Delete # delete for testing purposes. Change to Retain for production
   allowVolumeExpansion: true

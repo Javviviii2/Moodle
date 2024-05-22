@@ -27,41 +27,41 @@ spec:
             cpu: {{ .Values.deployment.resources.requests.cpu }}
             memory: {{ .Values.deployment.resources.requests.memory }}
         env:
-        - name: {{ .Values.deployment.env.env1.name }}
+        - name: MOODLE_DATABASE_USER
           valueFrom: 
             secretKeyRef:
               name: {{ .Values.secret.name }}
-              key: {{ .Values.deployment.env.env1.key }} 
-        - name: {{ .Values.deployment.env.env2.name }}
+              key: MOODLE_DATABASE_USER
+        - name: MOODLE_DATABASE_PASSWORD
           valueFrom: 
             secretKeyRef:
               name: {{ .Values.secret.name }}
-              key: {{ .Values.deployment.env.env2.key }}
-        - name: {{ .Values.deployment.env.env3.name }}
+              key: MOODLE_DATABASE_PASSWORD
+        - name: MOODLE_DATABASE_HOST
           valueFrom: 
             secretKeyRef:
               name: {{ .Values.secret.name }}
-              key: {{ .Values.deployment.env.env3.key }}
-        - name: {{ .Values.deployment.env.env4.name }}
+              key: MOODLE_DATABASE_HOST
+        - name: MOODLE_DATABASE_TYPE
           valueFrom: 
             secretKeyRef:
               name: {{ .Values.secret.name }}
-              key: {{ .Values.deployment.env.env4.key }}
-        - name: {{ .Values.deployment.env.env5.name }}
+              key: MOODLE_DATABASE_TYPE
+        - name: MOODLE_DATABASE_NAME
           valueFrom: 
             secretKeyRef:
               name: {{ .Values.secret.name }}
-              key: {{ .Values.deployment.env.env5.key }}
-        - name: {{ .Values.deployment.env.env6.name }}
+              key: MOODLE_DATABASE_NAME
+        - name: MOODLE_USERNAME
           valueFrom: 
             secretKeyRef:
               name: {{ .Values.secret.name }}
-              key: {{ .Values.deployment.env.env6.key }}
-        - name: {{ .Values.deployment.env.env7.name }}
+              key: MOODLE_USERNAME
+        - name: MOODLE_PASSWORD
           valueFrom: 
             secretKeyRef:
               name: {{ .Values.secret.name }}
-              key: {{ .Values.deployment.env.env7.key }}
+              key: MOODLE_PASSWORD
         volumeMounts:
         - name: {{ .Values.deployment.volumeMounts.data.name }}
           mountPath: {{ .Values.deployment.volumeMounts.data.mountPath }}

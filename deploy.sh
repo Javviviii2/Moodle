@@ -1,0 +1,1 @@
+helm install mariadb ./charts/mariadb 
