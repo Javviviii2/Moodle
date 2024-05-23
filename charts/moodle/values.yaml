@@ -2,7 +2,7 @@ namespace:
   name: moodle
 service:
   name: moodle-svc
-  type: clusterIP # LoadBalancer for cloud providers
+  type: ClusterIP # LoadBalancer for cloud providers
   protocol: TCP
   port: 80
   targetPort: 80
@@ -14,23 +14,23 @@ deployment:
   name: moodle-deployment
   replicas: 1
   image: docker.io/bitnami/moodle
-  tag: 4.4 
+  tag: latest
   containerPort1: 80
   containerPort2: 443
   resources:
     limits:
-      cpu: 500m
-      memory: 2Gi
+      cpu: 1000m
+      memory: 2048Mi
     requests:
       cpu: 500m
-      memory: 2Gi
+      memory: 1024Mi
   volumeMounts:
     data: 
       name: moodle-data
       mountPath: /bitnami/moodle
     files:
       name: moodledata-file
-      mountPath: /bitnami/moodledatafile
+      mountPath: /bitnami/moodledata
   volumes:
     data:
       name: moodle-data

@@ -1,1 +1,0 @@
-helm uninstall mariadb && helm uninstall moodle
