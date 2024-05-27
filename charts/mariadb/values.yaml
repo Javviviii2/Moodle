@@ -13,7 +13,7 @@ deployment:
   name: mariadb-deployment
   replicas: 1
   image: docker.io/bitnami/mariadb
-  tag: 10.5
+  tag: latest
   containerPort: 3306
   resources:
     limits:
@@ -47,11 +47,12 @@ pvc:
   name: mariadb-pvc 
   accessModes: ReadWriteOnce
   storage: 5Gi
+  storageClassName: mariadb-storage-class
 storageClass: 
   name: mariadb-storage-class
   provisioner: kubernetes.io/gce-pd
   parameters:
     type: pd-standard
     fstype: ext4
-  reclaimPolicy: Delete
+  reclaimPolicy: Delete # delete for testing purposes. Change to Retain for production
   allowVolumeExpansion: true

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: moodle-data
+  name: moodle-data-pvc
   namespace: moodle
 spec:
   accessModes:
@@ -14,7 +14,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: moodledata-data
+  name: moodledata-file-pvc
   namespace: moodle
 spec:
   accessModes:
@@ -23,16 +23,3 @@ spec:
     requests:
       storage: 5Gi
   storageClassName: moodle-storage-class
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mariadb-data
-  namespace: moodle
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: mariadb-storage-class

@@ -8,4 +8,4 @@ parameters:
   type: {{ .Values.storageClass.parameters.type }}
   fstype: {{ .Values.storageClass.parameters.fstype }}
 reclaimPolicy: {{ .Values.storageClass.reclaimPolicy}}
-allowVolumeExpansion: {{ .Values.storageClass.allowVolume}}
+allowVolumeExpansion: {{ .Values.storageClass.allowVolumeExpansion}}

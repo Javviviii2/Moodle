@@ -16,7 +16,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: moodle
+  name: moodle-deploy
   namespace: moodle
 spec:
   replicas: 1
@@ -41,13 +41,23 @@ spec:
         - containerPort: 443
         resources:
           limits:
-            cpu: 500m
-            ephemeral-storage: 1Gi
-            memory: 2Gi
+            cpu: 2000m
+            memory: 4Gi
           requests:
             cpu: 500m
-            ephemeral-storage: 1Gi
-            memory: 2Gi
+            memory: 1Gi
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
         env:
         #--------------------------------------------------#  
         - name: MOODLE_DATABASE_USER # Must be the same as MARIADB_USER
@@ -93,12 +103,12 @@ spec:
         volumeMounts:
         - name: moodle-data
           mountPath: /bitnami/moodle
-        - name: moodledata-data
-          mountPath: /bitnami/moodledata
+        - name: moodledata-file
+          mountPath: /bitnami/moodledatafile
       volumes:
       - name: moodle-data
         persistentVolumeClaim:
-          claimName: moodle-data
-      - name: moodledata-data
+          claimName: moodle-data-pvc
+      - name: moodledata-file
         persistentVolumeClaim:
-          claimName: moodledata-data
+          claimName: moodledata-file-pvc
