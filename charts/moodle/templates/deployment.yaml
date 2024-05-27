@@ -62,6 +62,8 @@ spec:
             secretKeyRef:
               name: {{ .Values.secret.name }}
               key: MOODLE_PASSWORD
+        - name: BITNAMI_DEBUG
+          value: "true"
         volumeMounts:
         - name: {{ .Values.deployment.volumeMounts.data.name }}
           mountPath: {{ .Values.deployment.volumeMounts.data.mountPath }}

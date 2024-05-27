@@ -13,7 +13,7 @@ deployment:
   name: mariadb-deployment
   replicas: 1
   image: docker.io/bitnami/mariadb
-  tag: 10.5
+  tag: latest
   containerPort: 3306
   resources:
     limits:
