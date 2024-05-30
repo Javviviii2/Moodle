@@ -18,10 +18,10 @@ deployment:
   resources:
     limits:
       cpu: 500m
-      memory: 2Gi
+      memory: 1Gi
     requests:
       cpu: 500m
-      memory: 2Gi
+      memory: 1Gi
   env:
     env1:
       name: MARIADB_ROOT_USER

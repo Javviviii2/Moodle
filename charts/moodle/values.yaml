@@ -2,7 +2,7 @@ namespace:
   name: moodle
 service:
   name: moodle-svc
-  type: ClusterIP # LoadBalancer for cloud providers
+  type: LoadBalancer
   protocol: TCP
   port: 80
   targetPort: 80
