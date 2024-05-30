@@ -4,8 +4,9 @@ service:
   name: moodle-svc
   type: LoadBalancer
   protocol: TCP
-  port: 80
-  targetPort: 80
+  port: 8080
+  targetPort: 8080
+  sessionAffinity: ClientIP
 app:
   name: moodle
 secret:
@@ -15,8 +16,8 @@ deployment:
   replicas: 1
   image: docker.io/bitnami/moodle
   tag: latest
-  containerPort1: 80
-  containerPort2: 443
+  containerPort1: 8080
+  containerPort2: 8443
   resources:
     limits:
       cpu: 1000m
