@@ -48,11 +48,10 @@ Create the cluster:
 gcloud container clusters create-auto moodle --location=europe-southwest1
 ```
 # Public Moodle IP:
-   🚧 Working in process 👷
+   http://35.233.81.243:8080/
 # To-Do
-* DHCP on K8s
 * Create security plan
-* Check session persistence
+* DNS?
   
 # Bibliography
 * Moodle:
