@@ -4,7 +4,7 @@ metadata:
   name: moodle-ingress
 spec:
   rules:
-  - host: "www.apsico.es"
+  - host: "www.apsico.org"
     http:
       paths: 
       - pathType: Prefix
@@ -13,4 +13,4 @@ spec:
           service:
             name: moodle-svc
             port:
-              number: 80
+              number: 8080
