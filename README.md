@@ -15,6 +15,7 @@ By: Javier Rodríguez Fernández
 - Helm
 - K9s (optional but highly recommended)
 - A kubernetes cluster
+- Terraform (in case of using terraform manifest)
 ## Moodle Imagen from Bitnami
 Packages installed by Bitnami Dockerfile:
 - "php-8.1.28-4-linux-${OS_ARCH}-debian-12"
@@ -48,7 +49,22 @@ These environment variables are set using Kubernetes secrets (`moodle-secret`).
 - `MARIADB_LONG_QUERY_TIME`: How much time, in seconds, defines a slow query.
 
 These environment variables are set using Kubernetes secrets (`mariadb-secret`).
-## Install Moodle and MariaDB
+# Setting up
+## 1. Create Google cluster
+``` console
+gcloud container clusters create-auto moodle --location=europe-southwest1
+```
+Also, you can use Terraform cluster manifest:
+``` console
+terraform init
+```
+``` console
+terraform plan
+```
+``` console
+terraform apply
+```
+## 2. Install Moodle and MariaDB
 1. Moodle
    ```` console
    helm install moodle chart/moodle
@@ -58,10 +74,10 @@ These environment variables are set using Kubernetes secrets (`mariadb-secret`).
    helm install mariadb chart/mariadb
    ````
 # Google Cloud Cluster
-Create the cluster:
-``` console
-gcloud container clusters create-auto moodle --location=europe-southwest1
-```
+Connect to GKE:
+   ```` console
+   gcloud container clusters get-credentials CLUSTER_NAME --zone ZONE_NAME --project PROJECT_ID
+   ````
 # Public Moodle IP:
    http://35.233.81.243:8080/
 
