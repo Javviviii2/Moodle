@@ -1,6 +1,7 @@
 # Moodle and High Disponibility
 Curse: ASIR 2024
 School: CPIFP Alan Turin
+By: Javier Rodríguez Fernández
 ## CheckPoint
 [Video CheckPoint](https://youtu.be/ipq2waYJp-c)
 ## Diary
@@ -8,7 +9,7 @@ School: CPIFP Alan Turin
 ## Security Plan
 [Security Plan](https://docs.google.com/document/d/1VSDTZWjO0Osi0MCTEkeftTDA9o6okxMAmCoiWzl4fpM/edit?usp=sharing)
 
-#Documentation
+# Documentation
 ## Requeriments
 - Kubernetes
 - Helm
