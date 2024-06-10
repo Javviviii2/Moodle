@@ -11,7 +11,7 @@ resource "google_container_cluster" "moodle_cluster" {
    deletion_protection = false  # Deshabilitar la protección de eliminación
 
   node_config {
-    machine_type = "e2-medium"
+    machine_type = "e2-micro"
   }
 }
 
