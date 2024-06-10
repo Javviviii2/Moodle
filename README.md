@@ -1,13 +1,22 @@
-# Moodle
+# Moodle and High Disponibility
 Curse: ASIR 2024
 School: CPIFP Alan Turin
+By: Javier Rodríguez Fernández
 ## CheckPoint
 [Video CheckPoint](https://youtu.be/ipq2waYJp-c)
 ## Diary
 [Moodle binnacle](https://docs.google.com/document/d/1KNaS97n7dDzfjWdDSxk-xkjukFkCoAAS8Q0o4S3_wx4/edit?usp=sharing)
+## Security Plan
+[Security Plan](https://docs.google.com/document/d/1VSDTZWjO0Osi0MCTEkeftTDA9o6okxMAmCoiWzl4fpM/edit?usp=sharing)
 
+# Documentation
+## Requeriments
+- Kubernetes
+- Helm
+- K9s (optional but highly recommended)
+- A kubernetes cluster
+- Terraform (in case of using terraform manifest)
 ## Moodle Imagen from Bitnami
-
 Packages installed by Bitnami Dockerfile:
 - "php-8.1.28-4-linux-${OS_ARCH}-debian-12"
 - "apache-2.4.59-0-linux-${OS_ARCH}-debian-12"
@@ -29,7 +38,6 @@ Packages installed by Bitnami Dockerfile:
 These environment variables are set using Kubernetes secrets (`moodle-secret`).
 
 ## MariaDB Imagen from Bitnami
-
 ### MariaDB Environment Variables
 - `MARIADB_ROOT_USER`: MariaDB database root user.
 - `MARIADB_ROOT_PASSWORD`: MariaDB database root user password.
@@ -41,18 +49,38 @@ These environment variables are set using Kubernetes secrets (`moodle-secret`).
 - `MARIADB_LONG_QUERY_TIME`: How much time, in seconds, defines a slow query.
 
 These environment variables are set using Kubernetes secrets (`mariadb-secret`).
-
-# Google Cloud Cluster
-Create the cluster:
+# Setting up
+## 1. Create Google cluster
 ``` console
 gcloud container clusters create-auto moodle --location=europe-southwest1
 ```
+Also, you can use Terraform cluster manifest:
+``` console
+terraform init
+```
+``` console
+terraform plan
+```
+``` console
+terraform apply
+```
+## 2. Install Moodle and MariaDB
+1. Moodle
+   ```` console
+   helm install moodle chart/moodle
+   ````
+2. MariaDB
+   ```` console
+   helm install mariadb chart/mariadb
+   ````
+# Google Cloud Cluster
+Connect to GKE:
+   ```` console
+   gcloud container clusters get-credentials CLUSTER_NAME --zone ZONE_NAME --project PROJECT_ID
+   ````
 # Public Moodle IP:
    http://35.233.81.243:8080/
-# To-Do
-* Create security plan
-* DNS?
-  
+
 # Bibliography
 * Moodle:
     - [Moodle by Bitnami](https://github.com/bitnami/containers/tree/main/bitnami/moodle#bitnami-lms-powered-by-moodle-lms)

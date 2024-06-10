@@ -18,7 +18,7 @@ def load_test(url, num_requests):
     print(f"Failed requests: {failure_count}")
 
 if __name__ == "__main__":
-    url = "https://www.google.es" # URL to test
+    url = "http://35.233.81.243:8080/" # URL to test
     num_requests = 10 # Number of requests to make
 
     load_test(url, num_requests)
