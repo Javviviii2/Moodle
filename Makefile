@@ -10,3 +10,5 @@ get-contexts:
 	kubectl config get-contexts
 cloud-context:
 	kubectl config use-context gke_moodle-424918_europe-west1_moodle  
+create-cluster:
+	gcloud container clusters create-auto moodle --location=europe-southwest1
