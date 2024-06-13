@@ -39,6 +39,7 @@ deployment:
     files:
       name: moodledata-file
 pvc:
+  create: false
   moodledata:
     name: moodle-data-pvc 
     accessModes: ReadWriteOnce

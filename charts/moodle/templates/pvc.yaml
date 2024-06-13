@@ -1,3 +1,4 @@
+{{- if .Values.pvc.create }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -23,3 +24,4 @@ spec:
     requests:
       storage: {{ .Values.pvc.moodledatafile.storage }}
   storageClassName: {{ .Values.storageClass.name }}
+{{- end }}
