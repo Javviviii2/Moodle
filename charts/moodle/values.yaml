@@ -2,6 +2,7 @@ namespace:
   name: moodle
 service:
   name: moodle-svc
+  namePortHttp: http
   type: LoadBalancer
   protocol: TCP
   port: 8080
