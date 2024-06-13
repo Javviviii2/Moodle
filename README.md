@@ -72,7 +72,8 @@ terraform apply
    ```` console
    helm install moodle chart/moodle
    ````
-Change value pvc.create to "true" the first time. It will create the pvc.
+Change value pvc.create to "true" the first time. It will create the pvc
+
 2. MariaDB
    ```` console
    helm install mariadb chart/mariadb
