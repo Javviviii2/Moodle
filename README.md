@@ -85,7 +85,7 @@ Connect to GKE:
    gcloud container clusters get-credentials CLUSTER_NAME --zone ZONE_NAME --project PROJECT_ID
    ````
 # Public Moodle IP:
-   http://35.233.81.243:8080/
+   http://34.140.172.97:8080/
 
 # Bibliography
 * Moodle:
