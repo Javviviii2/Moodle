@@ -44,7 +44,7 @@ deployment:
   volumes:
     name: mariadb-data
 pvc:
-  create: false
+  create: true
   name: mariadb-pvc 
   accessModes: ReadWriteOnce
   storage: 5Gi
