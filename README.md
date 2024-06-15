@@ -68,6 +68,16 @@ terraform plan
 terraform apply
 ```
 ## 2. Install Moodle and MariaDB
+0. Prepare secrets and namespace:
+   ```` console
+   kubectl create namespace moodle
+   ````
+   ```` console
+   kubectl apply -f /path/to/secretmoodle
+   ````
+   ```` console
+   kubectl apply -f /path/to/secretmariadb
+   ````
 1. Moodle
    ```` console
    helm install moodle chart/moodle
