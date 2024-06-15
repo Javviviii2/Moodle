@@ -8,7 +8,10 @@ By: Javier Rodríguez Fernández
 [Moodle binnacle](https://docs.google.com/document/d/1KNaS97n7dDzfjWdDSxk-xkjukFkCoAAS8Q0o4S3_wx4/edit?usp=sharing)
 ## Security Plan
 [Security Plan](https://docs.google.com/document/d/1VSDTZWjO0Osi0MCTEkeftTDA9o6okxMAmCoiWzl4fpM/edit?usp=sharing)
-
+## Final Video
+[Video](https://youtu.be/6BO_9IK1OrE)
+## Presentation PDF
+[PDF](https://drive.google.com/file/d/1H3MaDdjIZj9j8uWACpWZuBf5dPFTy9wW/view?usp=sharing)
 # Documentation
 ## Requeriments
 - Kubernetes
@@ -69,10 +72,13 @@ terraform apply
    ```` console
    helm install moodle chart/moodle
    ````
+Change value pvc.create to "true" the first time. It will create the pvc
+
 2. MariaDB
    ```` console
    helm install mariadb chart/mariadb
    ````
+Change value pvc.create to "true" the first time. It will create the pvc.
 # Google Cloud Cluster
 Connect to GKE:
    ```` console
